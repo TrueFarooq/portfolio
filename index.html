@@ -1,53 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <style>
-    body {
-      font-family: orbitron, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #121212;
-      color: #ffffff;
-      text-align: center;
-    }
-    header {
-      padding: 50px 20px;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #b3b3b3;
-      font-size: 1.1rem;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .card {
-      background: #1e1e1e;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Perfect Pyramid - Join Us</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>The Perfect Pyramid</h1>
-    <p>Music Production | Content Creation | Projects</p>
-  </header>
 
-  <div class="container">
-    <div class="card">
-      <h2>Featured Projects</h2>
-      <p>Check back soon for latest releases and updates.</p>
-    </div>
-  </div>
+    <!-- Main Landing Section -->
+    <section id="hero">
+        <div class="header-container">
+            <!-- This is where your image will load -->
+            <img src="pyramid-logo.jpg" alt="The Perfect Pyramid Gradient Emblem" class="hero-image">
+            
+            <div class="text-overlay">
+                <h1>THE PERFECT</h1>
+                <h2>PYRAMID</h2>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <p>Welcome to a journey of understanding, connection, and harmonious growth. We invite you to explore a path designed for foundational success.</p>
+            
+            <div class="button-group">
+                <a href="#about" class="btn secondary">ABOUT US</a>
+                <a href="#apply" class="btn primary">APPLY NOW</a>
+                <a href="#contact" class="btn secondary">CONTACT</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section (Connected to Netlify Forms) -->
+    <section id="apply" class="form-section">
+        <h3>APPLY NOW</h3>
+        <p>Complete this brief form to begin your journey.</p>
+        
+        <!-- The magic happens here. The netlify data attribute enables form submissions. -->
+        <form name="casting-application" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="casting-application" />
+            
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="Your First & Last Name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location (City, State)</label>
+                <input type="text" id="location" name="location" required placeholder="Atlanta, GA">
+            </div>
+
+            <div class="form-group">
+                <label for="background">Tell us a bit about your background and interest</label>
+                <textarea id="background" name="background" rows="5" required placeholder="I am interested in exploring harmonious relationship structures..."></textarea>
+            </div>
+
+            <button type="submit" class="btn primary">Submit Application</button>
+        </form>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h3>CONTACT US</h3>
+        <p>For inquiries regarding partnerships, press, or questions about the show.</p>
+        <a href="mailto:contact@theperfectpyramid.com" class="btn contact-btn">Send Email</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 The Perfect Pyramid. All Rights Reserved.</p>
+    </footer>
+
 </body>
 </html>
