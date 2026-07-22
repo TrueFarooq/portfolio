@@ -3,77 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Perfect Pyramid - Join Us</title>
-    <link rel="stylesheet" href="style.css">
+    <title>The Perfect Pyramid</title>
+
+    <style>
+        /* Color Palette & Global Styles */
+        :root {
+            --bg-color: #F7F1E7;       /* Soft cream background */
+            --text-dark: #2C221E;      /* Rich dark brown text */
+            --btn-color: #C96645;     /* Warm terracotta button */
+            --btn-hover: #B25334;     /* Darker terracotta on hover */
+            --gold-accent: #E1BA77;   /* Gold text accent */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Top Navigation Header */
+        header {
+            background-color: #FFFFFF;
+            padding: 1.2rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .site-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        /* Hero Image Container */
+        .hero-section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Welcome Text Section */
+        .intro-text {
+            max-width: 680px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .intro-text h2 {
+            font-size: 2rem;
+            color: var(--btn-color);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        /* Clickable Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--btn-color);
+            color: #FFFFFF;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(201, 102, 69, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(201, 102, 69, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            font-size: 0.85rem;
+            color: #7A6B65;
+            border-top: 1px solid #EAE0D5;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Main Landing Section -->
-    <section id="hero">
-        <div class="header-container">
-            <!-- This is where your image will load -->
-            <img src="pyramid-logo.jpg" alt="The Perfect Pyramid Gradient Emblem" class="hero-image">
-            
-            <div class="text-overlay">
-                <h1>THE PERFECT</h1>
-                <h2>PYRAMID</h2>
-            </div>
-        </div>
+    <!-- Header Banner -->
+    <header>
+        <a href="index.html" class="site-title">The Perfect Pyramid</a>
+    </header>
 
-        <div class="content-container">
-            <p>Welcome to a journey of understanding, connection, and harmonious growth. We invite you to explore a path designed for foundational success.</p>
-            
-            <div class="button-group">
-                <a href="#about" class="btn secondary">ABOUT US</a>
-                <a href="#apply" class="btn primary">APPLY NOW</a>
-                <a href="#contact" class="btn secondary">CONTACT</a>
-            </div>
-        </div>
+    <!-- Hero Image Banner -->
+    <section class="hero-section">
+        <!-- Make sure your image file in GitHub is named 'pyramid-hero.jpg' -->
+        <img src="pyramid-hero.jpg" alt="The Perfect Pyramid" class="hero-image">
     </section>
 
-    <!-- Application Form Section (Connected to Netlify Forms) -->
-    <section id="apply" class="form-section">
-        <h3>APPLY NOW</h3>
-        <p>Complete this brief form to begin your journey.</p>
-        
-        <!-- The magic happens here. The netlify data attribute enables form submissions. -->
-        <form name="casting-application" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="casting-application" />
-            
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required placeholder="Your First & Last Name">
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-            </div>
-
-            <div class="form-group">
-                <label for="location">Location (City, State)</label>
-                <input type="text" id="location" name="location" required placeholder="Atlanta, GA">
-            </div>
-
-            <div class="form-group">
-                <label for="background">Tell us a bit about your background and interest</label>
-                <textarea id="background" name="background" rows="5" required placeholder="I am interested in exploring harmonious relationship structures..."></textarea>
-            </div>
-
-            <button type="submit" class="btn primary">Submit Application</button>
-        </form>
+    <!-- Intro Text -->
+    <section class="intro-text">
+        <h2>Harmonious Foundations</h2>
+        <p>Welcome to a space dedicated to understanding, structure, and intentional growth. Explore our mission or apply to join our dynamic journey.</p>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h3>CONTACT US</h3>
-        <p>For inquiries regarding partnerships, press, or questions about the show.</p>
-        <a href="mailto:contact@theperfectpyramid.com" class="btn contact-btn">Send Email</a>
-    </section>
+    <!-- Clickable Navigation Links -->
+    <nav class="nav-buttons">
+        <a href="about.html" class="btn">About Us</a>
+        <a href="apply.html" class="btn">Apply Now</a>
+        <a href="contact.html" class="btn">Contact</a>
+    </nav>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 The Perfect Pyramid. All Rights Reserved.</p>
+        <p>&copy; 2026 The Perfect Pyramid. All Rights Reserved.</p>
     </footer>
 
 </body>
