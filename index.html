@@ -3,156 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><h1><img src="images/pyramid.jpg" alt="Perfect Pyramid" style="width:100%; max-width:600px; height:auto; display:block; margin:0 auto;" />
-</h1>
- </title>
-
+    <title>The Perfect Pyramid</title>
     <style>
-        /* Color Palette & Global Styles */
-        :root {
-            --bg-color: #F7F1E7;       /* Soft cream background */
-            --text-dark: #2C221E;      /* Rich dark brown text */
-            --btn-color: #C96645;     /* Warm terracotta button */
-            --btn-hover: #B25334;     /* Darker terracotta on hover */
-            --gold-accent: #E1BA77;   /* Gold text accent */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* CSS Styles */
         body {
-            font-family: 'Playfair Display', Georgia, serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
+            font-family: Arial, sans-serif;
+            background-color: #E6DCD2; /* Match photo colors */
+            color: #4A3C2A; /* Dark brown from photo */
             text-align: center;
-            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
         }
 
-        /* Top Navigation Header */
-        header {
-            background-color: #FFFFFF;
-            padding: 1.2rem 2rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .site-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-dark);
-            text-decoration: none;
-        }
-
-        /* Hero Image Container */
-        .hero-section {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .hero-image {
+        /* Image styling */
+        .header-image {
             width: 100%;
+            max-width: 600px;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #9C8C7C;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
-        /* Welcome Text Section */
-        .intro-text {
-            max-width: 680px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        /* Styling for the text underneath the photo */
+        .welcome-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
         }
 
-        .intro-text h2 {
-            font-size: 2rem;
-            color: var(--btn-color);
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .intro-text p {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-        }
-
-        /* Clickable Navigation Buttons */
-        .nav-buttons {
+        /* Container for the navigation buttons */
+        .nav-container {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin: 2.5rem 0 4rem 0;
-            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .btn {
+        /* Base styling for all navigation buttons */
+        .nav-button {
             display: inline-block;
-            background-color: var(--btn-color);
-            color: #FFFFFF;
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: bold;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(201, 102, 69, 0.3);
+            padding: 10px 20px;
+            background-color: #A36B4E; /* Terracotta from image */
+            color: white;
+            text-decoration: none; /* Make links look like buttons */
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
-            background-color: var(--btn-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 14px rgba(201, 102, 69, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem;
-            font-size: 0.85rem;
-            color: #7A6B65;
-            border-top: 1px solid #EAE0D5;
+        /* Hover effect for buttons */
+        .nav-button:hover {
+            background-color: #8D5A41; /* Darker terracotta on hover */
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Banner -->
-    <header>
-        <a href="index.html" class="site-title">The Perfect Pyramid</a>
-    </header>
+    <!-- Link the provided photo -->
+    <img src="Pyramid.png" alt="The Perfect Pyramid" class="header-image">
 
-    <!-- Hero Image Banner -->
-    <section class="hero-section">
-        <!-- Match this filename with your uploaded image on GitHub -->
-        <img src="pyramid-hero.png" alt="The Perfect Pyramid" class="hero-image">
-    </section>
+    <!-- The requested text under the image -->
+    <div class="welcome-text">Welcome!</div>
 
-    <!-- Intro Text -->
-    <section class="intro-text">
-        <h2>Harmonious Foundations</h2>
-        <p>Welcome to a space dedicated to understanding, structure, and intentional growth. Explore our mission or apply to join our dynamic journey.</p>
-    </section>
-
-    <!-- Clickable Navigation Links -->
-    <nav class="nav-buttons">
-        <a href="about.html" class="btn">About Us</a>
-        <a href="apply.html" class="btn">Apply Now</a>
-        <a href="contact.html" class="btn">Contact</a>
-    </nav>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 The Perfect Pyramid. All Rights Reserved.</p>
-    </footer>
+    <!-- The required clickable links -->
+    <div class="nav-container">
+        <a href="#about" class="nav-button">ABOUT US</a>
+        <a href="#apply" class="nav-button">APPLY NOW</a>
+        <a href="#contact" class="nav-button">CONTACT</a>
+    </div>
 
 </body>
 </html>
