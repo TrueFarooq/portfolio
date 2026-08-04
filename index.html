@@ -5,106 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Perfect Pyramid</title>
     <style>
-        /* CSS Styles */
+        /* Base Styles */
         body {
-            font-family: Orbitron, sans-serif;
+            font-family: 'Orbitron', sans-serif;
             background-color: #000;
-  background-image: url("1784757283349.png");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-} /* Match photo colors */
-            color: #ffffff; /* Dark brown from photo */
+            background-image: url("1784757283349.png");
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            color: #ffffff;
             text-align: center;
             margin: 0;
             padding: 20px;
         }
 
-        /* Image styling */
-        .header-image {width: 100%;
+        /* Image Styling */
+        .header-image {
+            width: 100%;
             max-width: 600px;
             height: auto;
             border: 2px solid #9C8C7C;
             border-radius: 10px;
-            margin-bottom: 20px;}
-.welcome-text {   /* Styling for the text underneath the photo */
+            margin-bottom: 20px;
+        }
+
+        /* Welcome Text Card */
+        .welcome-text {
             color: #ffffff;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            background-color: rgba(0, 0,
-0,0.7);
-padding: 15px; color: #ffffff;}
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: normal;
+            margin: 0 auto 30px auto;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #9C8C7C;
+            box-sizing: border-box;
+        }
 
-     
-
-        /* Container for the navigation buttons */
+        /* Navigation Links Container */
         .nav-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        /* Base styling for all navigation buttons */
+        /* Base Styling for Navigation Buttons */
         .nav-button {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #A36B4E; /* Terracotta from image */
-            color: white;
-            text-decoration: none; /* Make links look like buttons */
+            padding: 12px 24px;
+            background-color: #A36B4E; /* Terracotta */
+            color: #ffffff;
+            text-decoration: none;
             border-radius: 5px;
+            font-weight: bold;
             transition: background-color 0.3s ease;
         }
 
-        /* Hover effect for buttons */
         .nav-button:hover {
-            background-color: #000; /* Darker terracotta on hover */
+            background-color: #7A4B33; /* Darker terracotta */
         }
-    CSS
-body {
-.btn-custom {
-    background-color: #000000;
-    color: #ffffff;
-    font-family: 'Orbitron', sans-serif;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
 
+        /* Custom Action Buttons Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
+        /* Custom Action Buttons */
+        .btn-custom {
+            background-color: #A36B4E;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
+        .btn-custom:hover {
+            background-color: #7A4B33;
+        }
     </style>
 </head> 
 <body>
 
-    <!-- Link the provided photo -->
-    <img src="" alt="The Perfect Pyramid" class="header-image">
+    <!-- Header Image -->
+    <img src="1784757283349.png" alt="The Perfect Pyramid" class="header-image">
 
-    <!-- The requested text under the image -->
-    <div class="welcome-text">Our mission is to foster supportive community structures and stable relationships by emphasizing honesty, integrity, and shared responsibilities to help everyone thrive together.{margin-bottom: 2rem; /* Adjust this} Our vision... We want to create stronger villages by restoring family foundations through integrity, honesty, and shared responsibility. We emphasize the foundational order of headship, encouraging men to step up as faithful, consistent leaders in their homes, while promoting harmony and mutual respect within dedicated partnerships.
-​Through our platform, including projects like The Perfect Pyramid, we bring like-minded people together to pool resources, lighten everyday burdens, and build stable, loving homes for the next generation. By uniting individuals with a shared purpose, we are working to restore the family order to biblical standards.</div>
+    <!-- Welcome Section -->
+    <div class="welcome-text">
+        <p>Our mission is to foster supportive community structures and stable relationships by emphasizing honesty, integrity, and shared responsibilities to help everyone thrive together.</p>
+        <p>Our vision... We want to create stronger villages by restoring family foundations through integrity, honesty, and shared responsibility. We emphasize the foundational order of headship, encouraging men to step up as faithful, consistent leaders in their homes, while promoting harmony and mutual respect within dedicated partnerships.</p>
+        <p>Through our platform, including projects like The Perfect Pyramid, we bring like-minded people together to pool resources, lighten everyday burdens, and build stable, loving homes for the next generation. By uniting individuals with a shared purpose, we are working to restore the family order to biblical standards.</p>
+    </div>
 
-    <!-- The required clickable links -->
+    <!-- Navigation Links -->
     <div class="nav-container">
         <a href="#about" class="nav-button">ABOUT US</a>
         <a href="#Media" class="nav-button">MEDIA</a>
         <a href="#apply" class="nav-button">APPLY NOW</a>
         <a href="#contact" class="nav-button">CONTACT</a>
-    </div> <style>
-  .btn-custom {
-    background-color: #00d2ff;
-            color: #12002}
+    </div>
 
-<div class="container">
-  <button class="btn-custom">AskLou</button>
-  <button class="btn-custom">Reply</button>
-  <button class="btn-custom">Support</button>
-</div>
+    <!-- Action Buttons -->
+    <div class="container">
+        <button class="btn-custom">AskLou</button>
+        <button class="btn-custom">Reply</button>
+        <button class="btn-custom">Support</button>
+    </div>
 
 </body>
 </html>
