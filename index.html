@@ -234,7 +234,7 @@
   <header>
     <!-- Emblem Link triggering Gospel Modal -->
     <div class="emblem-container" onclick="openGospelModal()" title="Click to read the Gospel">
-      \<img= src="1784931541581.jpg" alt="The Perfect Pyramid emblem"/>
+      <img= src="1784931541581.jpg" alt="The Perfect Pyramid emblem"/>
       <div class="emblem-caption">Click Emblem for Truth</div>
     </div>
 
@@ -253,6 +253,8 @@
       <h2>Featured Media</h2>
       <div class="media-wrapper">
         <p>Your latest show recording will appear here.</p>
+        <img src="1784757283349.png" alt="A photo">
+           
         <!-- You can replace this text later with your actual video or audio embed code -->
       </div>
     </section>
@@ -340,7 +342,7 @@ img src="1784931541581.jpg" alt=A photo"
     const SUPABASE_URL = "https.cwlswhzmdtksnqjuhrar.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_bYCL8P__ZWfuKcGMdijXkg_ZIoa74wa";
 
-    const supabase = window.supabase.create Client(SUPABASE\_URL, SUPABASE\_ANON\_KEY);
+    const supabase = supabase.create Client(SUPABASE\_URL, SUPABASE\_ANON\_KEY);
       
     // --- GOSPEL MODAL CONTROL ---
     function openGospelModal() {
