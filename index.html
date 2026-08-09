@@ -284,7 +284,7 @@
     <!-- Left Sidebar: Sticky Photo -->
     <aside class="sidebar-left">
       <div class="sticky-sidebar-content">
-        <img src="1784757283349.png" alt="Featured Photo">
+        <img src="The Perfect Pyramid Img.png" alt="Featured Photo">
       </div>
     </aside>
 
@@ -411,7 +411,7 @@
     // --- REAL-TIME LIVE CHAT FUNCTIONALITY ---
     async function fetchMessages() {
       const { data, error } = await supabase
-        .from('chat_messages')
+        .from('Messages')
         .select('*')
         .order('created_at', { ascending: true })
         .limit(50);
@@ -430,7 +430,7 @@
     function appendMessage(msg) {
       const chatBox = document.getElementById('chatBox');
       const div = document.createElement('div');
-      div.className = 'chat-message';
+      div.className = 'Message';
       div.innerHTML = `<div class="chat-author">${escapeHtml(msg.username)}</div><div>${escapeHtml(msg.message)}</div>`;
       chatBox.appendChild(div);
       chatBox.scrollTop = chatBox.scrollHeight;
@@ -446,7 +446,7 @@
       if (!message) return;
 
       const { error } = await supabase
-        .from('chat_messages')
+        .from('Messages')
         .insert([{ username, message }]);
 
       if (error) {
@@ -463,8 +463,8 @@
     // Subscribe to live broadcast changes from Supabase
     function subscribeToChat() {
       supabase
-        .channel('public:chat_messages')
-        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, payload => {
+        .channel('public:Messages')
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'Messages' }, payload => {
           appendMessage(payload.new);
         })
         .subscribe();
