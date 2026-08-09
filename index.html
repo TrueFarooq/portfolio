@@ -377,7 +377,8 @@
     const SUPABASE_URL = "https://cwlswhzmdtksnqjuhrar.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_bYCL8P__ZWfuKcGMdijXkg_ZIoa74wa";
 
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // Renamed local client instance to avoid name conflict with window.supabase
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       
     // --- GOSPEL MODAL CONTROL ---
     function openGospelModal() {
@@ -396,7 +397,7 @@
       const intent = document.getElementById('intent').value;
       const message = document.getElementById('message').value;
 
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from('applications')
         .insert([{ full_name: fullName, email: email, intent: intent, message: message }]);
 
@@ -410,7 +411,7 @@
 
     // --- REAL-TIME LIVE CHAT FUNCTIONALITY ---
     async function fetchMessages() {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from('Messages')
         .select('*')
         .order('created_at', { ascending: true })
@@ -430,8 +431,8 @@
     function appendMessage(msg) {
       const chatBox = document.getElementById('chatBox');
       const div = document.createElement('div');
-      div.className = 'Message';
-      div.innerHTML = `<div class="chat-author">${escapeHtml(msg.username)}</div><div>${escapeHtml(msg.message)}</div>`;
+      div.className = 'chat-message';
+      div.innerHTML = `<div class="chat-author">${escapeHtml(msg.username || 'Anonymous')}</div><div>${escapeHtml(msg.message || '')}</div>`;
       chatBox.appendChild(div);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
@@ -445,7 +446,7 @@
 
       if (!message) return;
 
-      const { error } = await supabase
+      const { error } = await supabaseClient
         .from('Messages')
         .insert([{ username, message }]);
 
@@ -457,18 +458,24 @@
     }
 
     function escapeHtml(str) {
+      if (!str) return '';
       return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
     // Subscribe to live broadcast changes from Supabase
     function subscribeToChat() {
-      supabase
+      supabaseClient
         .channel('public:Messages')
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'Messages' }, payload => {
           appendMessage(payload.new);
         })
         .subscribe();
     }
+
+    // Attach functions to window object to guarantee accessibility in HTML onclick handlers
+    window.openGospelModal = openGospelModal;
+    window.closeGospelModal = closeGospelModal;
+    window.sendMessage = sendMessage;
 
     // Initialize Chat on Load
     window.addEventListener('DOMContentLoaded', () => {
