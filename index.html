@@ -575,7 +575,7 @@
 
       const { error } = await supabaseClient
         .from('Messages')
-        .insert([{ sender: senderName, message }]);
+        .insert([{ username: senderName, message }]);
 
       if (error) {
         alert('Could not send message: ' + error.message);
