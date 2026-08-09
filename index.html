@@ -59,10 +59,11 @@
       transform: scale(1.05);
     }
 
-    .emblem-svg {
-      width: 50px;
-      height: 50px;
-      fill: var(--accent-color);
+    .emblem-img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 50%;
     }
 
     .emblem-caption {
@@ -70,6 +71,7 @@
       color: var(--accent-color);
       text-transform: uppercase;
       letter-spacing: 1px;
+      margin-top: 4px;
     }
 
     h1 {
@@ -88,11 +90,42 @@
       font-size: 0.95rem;
     }
 
-    /* Main Container */
-    .container {
-      max-width: 900px;
+    /* Layout Wrapper with Sidebars */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr 280px;
+      gap: 20px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sidebar-left, .sidebar-right {
+      position: relative;
+    }
+
+    /* Sticky Side Photo */
+    .sticky-sidebar-content {
+      position: sticky;
+      top: 110px;
+    }
+
+    .sticky-sidebar-content img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      display: block;
+    }
+
+    /* Main Container */
+    .container {
+      width: 100%;
     }
 
     section {
@@ -234,7 +267,7 @@
   <header>
     <!-- Emblem Link triggering Gospel Modal -->
     <div class="emblem-container" onclick="openGospelModal()" title="Click to read the Gospel">
-      <img= src="1784931541581.jpg" alt="The Perfect Pyramid emblem"/>
+      <img src="1784931541581.jpg" alt="The Perfect Pyramid emblem" class="emblem-img" />
       <div class="emblem-caption">Click Emblem for Truth</div>
     </div>
 
@@ -247,80 +280,83 @@
     </nav>
   </header>
 
-  <div class="container">
-        <!-- Section: Featured Media -->
-    <section id="featured-media">
-      <h2>Featured Media</h2>
-      <div class="media-wrapper">
-        <p>Your latest show recording will appear here.</p>
-        <img src="1784757283349.png" alt="A photo">
-           
-        <!-- You can replace this text later with your actual video or audio embed code -->
+  <div class="page-layout">
+    <!-- Left Sidebar: Sticky Photo -->
+    <aside class="sidebar-left">
+      <div class="sticky-sidebar-content">
+        <img src="1784757283349.png" alt="Featured Photo">
       </div>
-    </section>
+    </aside>
 
-    <!-- Section 1: Understanding the Practice -->
-    <section id="about">
-      <h2>Understanding the Practice</h2>
-      <p>Building strong, stable relationships requires organization, structure, and mutual dedication. In household management, daily duties such as cooking, laundry, and maintaining the home can be rotated among adult partners, ensuring no single individual bears the entire domestic workload.</p>
-      <p><strong>Economic Benefits:</strong> Sharing a unified home creates significant financial advantages. Pooling resources and sharing household bills significantly reduces individual overhead costs, decreasing overall stress and eliminating the need for each adult to work excessive hours.</p>
-      <p><strong>Childcare & Guidance:</strong> Having multiple supportive adults involved in raising and educating children brings diverse strengths, ensuring well-rounded instruction, nurturing, and guidance.</p>
-    </section>
+    <!-- Main Content Center -->
+    <main class="container">
+      <!-- Section 1: Understanding the Practice -->
+      <section id="about">
+        <h2>Understanding the Practice</h2>
+        <p>Building strong, stable relationships requires organization, structure, and mutual dedication. In household management, daily duties such as cooking, laundry, and maintaining the home can be rotated among adult partners, ensuring no single individual bears the entire domestic workload.</p>
+        <p><strong>Economic Benefits:</strong> Sharing a unified home creates significant financial advantages. Pooling resources and sharing household bills significantly reduces individual overhead costs, decreasing overall stress and eliminating the need for each adult to work excessive hours.</p>
+        <p><strong>Childcare & Guidance:</strong> Having multiple supportive adults involved in raising and educating children brings diverse strengths, ensuring well-rounded instruction, nurturing, and guidance.</p>
+      </section>
 
-    <!-- Section 2: Application Form -->
-    <section id="apply">
-      <h2>Participant Application</h2>
-      <p>Fill out the form below to apply to be featured on the show or to seek guidance on finding/joining a household structure.</p>
-      
-      <form id="applicationForm">
-        <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" required placeholder="Your full name" />
+      <!-- Section 2: Application Form -->
+      <section id="apply">
+        <h2>Participant Application</h2>
+        <p>Fill out the form below to apply to be featured on the show or to seek guidance on finding/joining a household structure.</p>
+        
+        <form id="applicationForm">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" required placeholder="Your full name" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required placeholder="your.email@example.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="intent">I am looking to:</label>
+            <select id="intent" required>
+              <option value="">Select an option...</option>
+              <option value="be_on_show">Be on the show</option>
+              <option value="find_wife">Find an additional wife</option>
+              <option value="join_family">Join an existing family or couple</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell us about yourself and your story</label>
+            <textarea id="message" rows="5" required placeholder="Share your background and interest..."></textarea>
+          </div>
+
+          <button type="submit">Submit Application</button>
+        </form>
+      </section>
+
+      <!-- Section 3: Real-Time Live Chat -->
+      <section id="chat">
+        <h2>Live Community Chat</h2>
+        <div class="chat-box" id="chatBox">
+          <p style="color: var(--muted-text); text-align: center;">Connecting to live chat...</p>
         </div>
 
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" required placeholder="your.email@example.com" />
+        <div class="chat-input-group">
+          <input type="text" id="chatUsername" placeholder="Your Name" style="width: 30%;" />
+          <input type="text" id="chatInput" placeholder="Type a message..." style="width: 70%;" />
+          <button type="button" onclick="sendMessage()">Send</button>
         </div>
+      </section>
+    </main>
 
-        <div class="form-group">
-          <label for="intent">I am looking to:</label>
-          <select id="intent" required>
-            <option value="">Select an option...</option>
-            <option value="be_on_show">Be on the show</option>
-            <option value="find_wife">Find an additional wife</option>
-            <option value="join_family">Join an existing family or couple</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Tell us about yourself and your story</label>
-          <textarea id="message" rows="5" required placeholder="Share your background and interest..."></textarea>
-        </div>
-
-        <button type="submit">Submit Application</button>
-      </form>
-    </section>
-
-    <!-- Section 3: Real-Time Live Chat -->
-    <section id="chat">
-      <h2>Live Community Chat</h2>
-      <div class="chat-box" id="chatBox">
-        <p style="color: var(--muted-text); text-align: center;">Connecting to live chat...</p>
-      </div>
-
-      <div class="chat-input-group">
-        <input type="text" id="chatUsername" placeholder="Your Name" style="width: 30%;" />
-        <input type="text" id="chatInput" placeholder="Type a message..." style="width: 70%;" />
-        <button type="button" onclick="sendMessage()">Send</button>
-      </div>
-    </section>
-
+    <!-- Right Sidebar Placeholder -->
+    <aside class="sidebar-right">
+      <!-- You can add content here later -->
+    </aside>
   </div>
-img src="1784931541581.jpg" alt=A photo"
+
   <!-- Footer / Detailed Disclaimer -->
   <footer>
-    <p><strong>Disclaimer:</strong> We believe in the biblical structure of marriage, but we do not condemn anyone and all are welcome. We do not promote sin; however, we recognize and acknowledge that every individual possesses free will regarding their choices and actions. We reserve the right to refuse service service for any reason at any time.</p>
+    <p><strong>Disclaimer:</strong> We believe in the biblical structure of marriage, but we do not condemn anyone and all are welcome. We do not promote sin; however, we recognize and acknowledge that every individual possesses free will regarding their choices and actions. We reserve the right to refuse service for any reason at any time.</p>
     <p style="margin-top: 10px;">&copy; The Perfect Pyramid. All rights reserved.</p>
   </footer>
 
@@ -338,11 +374,10 @@ img src="1784931541581.jpg" alt=A photo"
 
   <script>
     // --- SUPABASE INITIALIZATION ---
-    // Replace these values with your actual project details from the Supabase Dashboard
-    const SUPABASE_URL = "https.cwlswhzmdtksnqjuhrar.supabase.co";
+    const SUPABASE_URL = "https://cwlswhzmdtksnqjuhrar.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_bYCL8P__ZWfuKcGMdijXkg_ZIoa74wa";
 
-    const supabase = supabase.create Client(SUPABASE\_URL, SUPABASE\_ANON\_KEY);
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       
     // --- GOSPEL MODAL CONTROL ---
     function openGospelModal() {
