@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Perfect Pyramid</title>
-  
+ 
   <!-- Supabase JS Client Library -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
+ 
   <style>
     :root {
       --bg-color: #121212;
@@ -88,6 +88,7 @@
       margin: 0 12px;
       font-weight: 500;
       font-size: 0.95rem;
+      cursor: pointer;
     }
 
     /* Layout Wrapper with Sidebars */
@@ -162,6 +163,7 @@
     input[type="text"],
     input[type="email"],
     input[type="password"],
+    input[type="file"],
     select,
     textarea {
       width: 100%;
@@ -270,7 +272,17 @@
       text-align: center;
     }
 
-    /* Gospel Page Modal */
+    .contact-info {
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      color: var(--text-color);
+    }
+
+    .contact-info a {
+      color: var(--accent-color);
+    }
+
+    /* Modals */
     .modal {
       display: none;
       position: fixed;
@@ -317,7 +329,9 @@
 
     <nav>
       <a href="#about">Understanding the Practice</a>
+      <a href="#contributors">Contributors</a>
       <a href="#apply">Apply / Connect</a>
+      <a onclick="openPhotoModal()">Upload Photo</a>
       <a href="#chat">Live Chat</a>
     </nav>
   </header>
@@ -340,11 +354,21 @@
         <p><strong>Childcare & Guidance:</strong> Having multiple supportive adults involved in raising and educating children brings diverse strengths, ensuring well-rounded instruction, nurturing, and guidance.</p>
       </section>
 
-      <!-- Section 2: Application Form -->
+      <!-- Section 2: Featured Contributors -->
+      <section id="contributors">
+        <h2>Featured Contributors</h2>
+        <p>We are proud to feature insights, guidance, and video content on polygyny from our trusted contributors:</p>
+        <ul style="list-style-type: disc; margin-left: 20px; line-height: 1.8;">
+          <li><strong>Mike Allen</strong> – <em>The Man Cave</em></li>
+          <li><strong>Erica</strong> – <em>Call for Wisdom</em></li>
+        </ul>
+      </section>
+
+      <!-- Section 3: Application Form -->
       <section id="apply">
         <h2>Participant Application</h2>
         <p>Fill out the form below to apply to be featured on the show or to seek guidance on finding/joining a household structure.</p>
-        
+       
         <form id="applicationForm">
           <div class="form-group">
             <label for="fullName">Full Name</label>
@@ -375,7 +399,7 @@
         </form>
       </section>
 
-      <!-- Section 3: Real-Time Live Chat & Auth -->
+      <!-- Section 4: Real-Time Live Chat & Auth -->
       <section id="chat">
         <h2>Live Community Chat</h2>
 
@@ -418,6 +442,10 @@
 
   <!-- Footer / Detailed Disclaimer -->
   <footer>
+    <div class="contact-info">
+      <p><strong>Email us here:</strong> <a href="mailto:theperfectpyramid@yahoo.com">theperfectpyramid@yahoo.com</a> | <a href="mailto:theperfectpyramid@gmail.com">theperfectpyramid@gmail.com</a></p>
+      <p><strong>Business Phone:</strong> [Insert Your iPhone Number Here]</p>
+    </div>
     <p><strong>Disclaimer:</strong> We believe in the biblical structure of marriage, but we do not condemn anyone and all are welcome. We do not promote sin; however, we recognize and acknowledge that every individual possesses free will regarding their choices and actions. We reserve the right to refuse service for any reason at any time.</p>
     <p style="margin-top: 10px;">&copy; The Perfect Pyramid. All rights reserved.</p>
   </footer>
@@ -429,8 +457,31 @@
       <h2>The Gospel of Jesus Christ</h2>
       <p>The perfect structural order of life originates directly from God. God the Father is the supreme head over all creation. Jesus Christ, the Son, is subject to the Father, and the Holy Spirit proceeds from the Father and the Son. Within the created earthly order, man is positioned under God's authority, woman under man's authority, and children under their parents' guidance.</p>
       <p>God created everything in perfection. However, human sin broke this relationship. Because God loved humanity, He entered the world in human flesh through His Son, Jesus Christ. Jesus lived a completely sinless life and willingly died on the cross, taking upon Himself the punishment for our sins.</p>
-      <p>He was buried and rose again from the dead on the third day. Following His resurrection, He was seen by over 400 people before ascending into heaven.</p>
+      <p>He was buried and rose again from the dead on the third day. Following His resurrection, He was seen by more than 40 people before ascending into heaven.</p>
       <p>On Pentecost, God sent the Holy Spirit to dwell inside all who place their trust in Jesus. Eternal life and salvation are received entirely as a gift through faith in what Christ did on the cross—not by any good works or moral self-righteousness.</p>
+    </div>
+  </div>
+
+  <!-- Photo Upload Modal -->
+  <div id="photoModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closePhotoModal()">&times;</span>
+      <h2>Upload Participant Photo</h2>
+      <p style="margin-bottom: 15px; color: var(--accent-color);"><strong>Dress to Impress:</strong> Please take the most professional photo possible before uploading.</p>
+     
+      <ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 25px; line-height: 1.8;">
+        <li><strong>Lighting:</strong> Good lighting is very important. Ensure your face is clearly seen.</li>
+        <li><strong>Framing:</strong> We require a full-body picture.</li>
+        <li><strong>Background & Posture:</strong> Use a clean, neutral background and maintain good, confident posture.</li>
+        <li><strong>Attire & Expression:</strong> Wear formal or business attire, and have a warm, welcoming expression with direct eye contact.</li>
+      </ul>
+
+      <div class="form-group">
+        <label for="participantPhoto">Select Your Photo</label>
+        <input type="file" id="participantPhoto" accept="image/*" />
+      </div>
+     
+      <button type="button" onclick="submitPhoto()">Submit Photo</button>
     </div>
   </div>
 
@@ -441,13 +492,34 @@
 
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     let currentUser = null;
-      
-    // --- GOSPEL MODAL CONTROL ---
+     
+    // --- MODAL CONTROLS ---
     function openGospelModal() {
       document.getElementById('gospelModal').style.display = 'block';
     }
     function closeGospelModal() {
       document.getElementById('gospelModal').style.display = 'none';
+    }
+
+    function openPhotoModal() {
+      document.getElementById('photoModal').style.display = 'block';
+    }
+    function closePhotoModal() {
+      document.getElementById('photoModal').style.display = 'none';
+    }
+
+    function submitPhoto() {
+      const fileInput = document.getElementById('participantPhoto');
+      if (fileInput.files.length === 0) {
+        alert("Please select a photo file to upload first.");
+        return;
+      }
+     
+      // In a real scenario, this would upload the file to Supabase Storage.
+      // For now, it provides a success message and clears the form.
+      alert("Thank you! Your photo has been submitted for review.");
+      fileInput.value = "";
+      closePhotoModal();
     }
 
     // --- USER AUTHENTICATION ---
@@ -510,7 +582,7 @@
     // --- APPLICATION FORM SUBMISSION ---
     document.getElementById('applicationForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+     
       const fullName = document.getElementById('fullName').value;
       const email = document.getElementById('email').value;
       const intent = document.getElementById('intent').value;
@@ -551,11 +623,11 @@
       const chatBox = document.getElementById('chatBox');
       const div = document.createElement('div');
       div.className = 'chat-message';
-      
+     
       // Supporting both 'sender' or 'username' depending on table schema
       const senderName = msg.sender || msg.username || 'Anonymous';
       div.innerHTML = `<div class="chat-author">${escapeHtml(senderName)}</div><div>${escapeHtml(msg.message || '')}</div>`;
-      
+     
       chatBox.appendChild(div);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
@@ -602,6 +674,9 @@
     // Attach functions to window object to guarantee accessibility in HTML onclick handlers
     window.openGospelModal = openGospelModal;
     window.closeGospelModal = closeGospelModal;
+    window.openPhotoModal = openPhotoModal;
+    window.closePhotoModal = closePhotoModal;
+    window.submitPhoto = submitPhoto;
     window.sendMessage = sendMessage;
     window.handleSignUp = handleSignUp;
     window.handleSignIn = handleSignIn;
